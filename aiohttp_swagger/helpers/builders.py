@@ -144,7 +144,7 @@ def generate_doc_from_each_end_point(
     if callable(callback):
         callback(swagger)
 
-    return json.dumps(swagger)
+    return json.dumps(swagger, sort_keys=True)
 
 
 def load_doc_from_yaml_file(doc_path: str):
