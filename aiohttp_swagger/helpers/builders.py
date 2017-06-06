@@ -67,7 +67,8 @@ def generate_doc_from_each_end_point(
         api_version: str = "1.0.0",
         title: str = "Swagger API",
         contact: str = "",
-        base_file: str = None):
+        base_file: str = None,
+        callback = None):
     # Clean description
     _start_desc = 0
     for i, word in enumerate(description):
@@ -139,6 +140,9 @@ def generate_doc_from_each_end_point(
                 url = url_info.get("formatter")
 
             swagger["paths"][url].update(end_point_doc)
+
+    if callable(callback):
+        callback(swagger)
 
     return json.dumps(swagger)
 
